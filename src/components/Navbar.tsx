@@ -69,7 +69,7 @@ export const Navbar = () => {
 
             {/* Mobile Items */}
             {menuOpen && (
-                <nav className="fixed font-light top-16 left-0 w-full h-200px bg-[#363636] flex flex-col text-2xl text-left gap-6 py-6 px-4 md:hidden rounded-2xl mt-5">
+                <nav className="fixed font-light top-16 left-0 w-full h-200px bg-[#363636] flex flex-col text-2xl text-left gap-6 py-6 px-4 md:hidden rounded-xl">
                     <ul className="flex flex-col gap-6">
                         <li>
                             <a
