@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X} from "lucide-react";
 
 export const Navbar = () => {
-
     const [menuOpen, setMenuOpen] = useState(false);
+
+    useEffect(() => {
+        if(!menuOpen) return;
+        const handleScroll = () => setMenuOpen(false);
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)}, [menuOpen])
+    ;
+
     const isActive = (path: string) => {
         if (typeof window !== "undefined") {
             return window.location.pathname === path;
@@ -12,7 +19,7 @@ export const Navbar = () => {
     };
 
     return (
-        <header className="flex h-16 items-center justify-between gap-6 px-6 sm:px-6 bg-[#1C1B1C]">
+        <header className="flex fixed top-0 left-0 h-16 w-full items-center justify-between gap-6 px-6 sm:px-10 bg-[#1C1B1C]">
             <div className="flex cursor-pointer text-2xl align-items-center text-[#a0a0a0] font-semibold">
                 <a href="/">
                     <span className="font-semibold text-white px-3 py-3">Kaiden.
@@ -26,7 +33,7 @@ export const Navbar = () => {
                 <ul className="flex gap-6">
                     <li>
                         <a
-                            className={`transition duration-500 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white ${isActive("/") ? "text-white" : "text-[#a0a0a0]"}`}
+                            className={`transition duration-300 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white ${isActive("/") ? "text-white" : "text-[#a0a0a0]"}`}
                             href="/"
                         >
                             Home
@@ -34,7 +41,7 @@ export const Navbar = () => {
                     </li>
                     <li>
                         <a
-                            className={`transition duration-500 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white ${isActive("/about") ? "text-white" : "text-[#a0a0a0]"}`}
+                            className={`transition duration-300 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white ${isActive("/about") ? "text-white" : "text-[#a0a0a0]"}`}
                             href="/about"
                         >
                             About
@@ -42,7 +49,7 @@ export const Navbar = () => {
                     </li>
                     <li>
                         <a
-                            className={`transition duration-500 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white ${isActive("/project") ? "text-white" : "text-[#a0a0a0]"}`}
+                            className={`transition duration-300 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white ${isActive("/project") ? "text-white" : "text-[#a0a0a0]"}`}
                             href="/project"
                         >
                             Project
@@ -50,10 +57,18 @@ export const Navbar = () => {
                     </li>
                     <li>
                         <a
-                            className={`transition duration-500 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white ${isActive("/contact") ? "text-white" : "text-[#a0a0a0]"}`}
+                            className={`transition duration-300 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white ${isActive("/contact") ? "text-white" : "text-[#a0a0a0]"}`}
                             href="/contact"
                         >
                             Contact
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            className={`transition duration-300 py-2 px-4 rounded-xl text-black bg-white hover:text-[#b8b8b8] ${isActive("/blog")}`}
+                            href="/blog"
+                        >
+                            Blog
                         </a>
                     </li>
                 </ul>
