@@ -2,24 +2,42 @@ import { useEffect, useState } from "react";
 import { Menu, X} from "lucide-react";
 
 export const Navbar = () => {
+    // State Variable
     const [menuOpen, setMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
         if(!menuOpen) return;
-        const handleScroll = () => setMenuOpen(false);
+        const handleScroll = () => {
+            const y = window.scrollY;
+            setScrolled(y > 20);
+            setHidden(y > 200);
+            if (menuOpen && y > 0) setMenuOpen(false);
+        };
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)}, [menuOpen])
     ;
 
     const isActive = (path: string) => {
         if (typeof window !== "undefined") {
-            return window.location.pathname === path;
+            const current = window.location.pathname;
+            if (path === "/") {
+                return current === "/" || current === "";
+            }
+            return current === path;
         }
         return false;
     };
 
+    const navbarClass = ["fixed top-0 left-0 w-full z-50 flex h-16 items-center justify-between gap-6 px-6 sm:px-10 transition-all duration-500",
+        scrolled ? "backdrop-blur-lg bg-[#1C1B1C]/50 shadow-lg" : "bg-transparent",
+        hidden ? "opacity-0 pointer-events-none" : "opacity-100"
+    ].join(" ");
+
+    // Start Navbar
     return (
-        <header className="flex fixed top-0 left-0 h-16 w-full items-center justify-between gap-6 px-6 sm:px-10 bg-[#1C1B1C]">
+        <header className={navbarClass}>
             <div className="flex cursor-pointer text-2xl align-items-center text-[#a0a0a0] font-semibold">
                 <a href="/">
                     <span className="font-semibold text-white px-3 py-3">Kaiden.
