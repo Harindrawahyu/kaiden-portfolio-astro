@@ -1,17 +1,24 @@
 ---
-import Hello from "../components/Hello.astro";
-import { Navbar } from "../components/Navbar";
+// import { Navbar } from "../components/Navbar";
+import Navbar from "../components/Navbar.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import Footer from "../components/Footer.astro";
 ---
 
 <MainLayout title="Kaiden.dev" , description="This is home page">
-  <Navbar client:load />
-  <section class="flex p-50">
-    <div class="container mx-auto justify-items-center">
+  <!-- <Navbar client:load /> -->
+  <Navbar />
+  <section class="relative min-h-screen text-white flex flex-col">
+    <div
+      class="flex-grow flex flex-col items-center justify-center text-center px-4"
+    >
       <!-- Greeting -->
-      <div class="mb-2">
-        <span id="typed" class="text-20 sm:text-3xl text-gray-400"></span>
+      <div class="text-center mb-2">
+        <span
+          id="typed"
+          class="text-gray-400 text-lg sm:text-xl md:text-2xl mb-4"
+        >
+        </span>
       </div>
 
       <!-- Nama -->
@@ -19,11 +26,11 @@ import Footer from "../components/Footer.astro";
         <span class="flex sm:text-5xl font-light text-gray-300 pr-3">
           I'm
         </span>
-        Indra
+        Harindra Wahyu
       </h1>
 
       <!-- Subtitle -->
-      <p class="mt-2 text-center text-xl sm:text-lg text-[#a0a0a0]">
+      <p class="flex mt-2 text-center text-lg text-[#a0a0a0]">
         Full Stack Web Developer.
       </p>
 
@@ -31,7 +38,7 @@ import Footer from "../components/Footer.astro";
       <div class="flex justify-center mt-6">
         <a
           href="/about"
-          class="rounded-xl py-2 px-3 text-m text-black bg-white hover:text-[#b8b8b8] transition duration-300"
+          class="rounded-xl py-2 px-5 text-m text-black bg-white hover:text-[#b8b8b8] transition duration-300"
           >Discover</a
         >
       </div>
@@ -43,7 +50,7 @@ import Footer from "../components/Footer.astro";
 
     new Typed("#typed", {
       strings: ["Assalamu'alaiakum,", "Hola,", "Hello,", "こんにちは,"],
-      typeSpeed: 80,
+      typeSpeed: 30,
       backSpeed: 50,
       loop: true,
     });

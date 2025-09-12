@@ -39,13 +39,13 @@ export const Navbar = () => {
     // Start Navbar
     return (
         <header className={navbarClass}>
-            {/* <div className="flex cursor-pointer text-2xl align-items-center text-[#a0a0a0] font-semibold">
+            <div className="flex cursor-pointer text-2xl align-items-center text-[#a0a0a0] font-semibold">
                 <a href="/">
                     <span className="font-semibold text-white px-3 py-3">Kaiden.
                         <span className="text-[#a0a0a0]">dev</span>
                     </span>
                 </a>
-            </div> */}
+            </div>
 
             {/* Desktop Items */}
             <nav className="hidden font-light md:flex gap-6 items-center text-m">
@@ -103,6 +103,7 @@ export const Navbar = () => {
 
             {/* Mobile Items */}
             {menuOpen && (
+
                 <nav className="fixed font-light top-16 left-0 w-full h-200px bg-[#363636] flex flex-col text-2xl text-left gap-6 py-6 px-4 md:hidden rounded-xl">
                     <ul className="flex flex-col gap-6">
                         <li>
@@ -143,6 +144,7 @@ export const Navbar = () => {
                         </li>
                     </ul>
                 </nav>
+
             )}
         </header>
     );

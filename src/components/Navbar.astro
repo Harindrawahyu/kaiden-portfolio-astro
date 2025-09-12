@@ -1,0 +1,260 @@
+---
+// Logic untuk menentukan tautan aktif
+const isActive = (path: string) => {
+  const current = Astro.url.pathname;
+  if (path === "/") {
+    return current === "/" || current === "";
+  }
+  return current.startsWith(path);
+};
+---
+
+<header
+  id="navbar-header"
+  class="fixed top-0 left-0 w-full z-50 flex h-16 items-center justify-between gap-6 px-6 sm:px-10 transition-all duration-500 bg-transparent"
+>
+  <div
+    class="flex cursor-pointer text-2xl align-items-center text-[#a0a0a0] font-semibold"
+  >
+    <a href="/">
+      <span class="font-semibold text-white px-3 py-3"
+        >Kaiden.
+        <span class="text-[#a0a0a0]">dev</span>
+      </span>
+    </a>
+  </div>
+
+  <nav class="hidden font-light md:flex gap-6 items-center text-m">
+    <ul class="flex gap-6">
+      <li>
+        <a
+          class:list={[
+            "transition duration-300 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white",
+            { "text-white": isActive("/") },
+            { "text-[#a0a0a0]": !isActive("/") },
+          ]}
+          href="/"
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          class:list={[
+            "transition duration-300 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white",
+            { "text-white": isActive("/about") },
+            { "text-[#a0a0a0]": !isActive("/about") },
+          ]}
+          href="/about"
+        >
+          About
+        </a>
+      </li>
+      <li>
+        <a
+          class:list={[
+            "transition duration-300 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white",
+            { "text-white": isActive("/project") },
+            { "text-[#a0a0a0]": !isActive("/project") },
+          ]}
+          href="/project"
+        >
+          Project
+        </a>
+      </li>
+      <li>
+        <a
+          class:list={[
+            "transition duration-300 px-3 py-2 rounded-full hover:bg-[#3a3a3a] hover:text-white",
+            { "text-white": isActive("/contact") },
+            { "text-[#a0a0a0]": !isActive("/contact") },
+          ]}
+          href="/contact"
+        >
+          Contact
+        </a>
+      </li>
+      <li>
+        <a
+          class:list={[
+            "transition duration-300 py-2 px-4 rounded-xl text-black bg-white hover:text-[#b8b8b8]",
+            { "text-[#b8b8b8]": isActive("/blog") },
+          ]}
+          href="/blog"
+        >
+          Blog
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <button
+    id="mobile-menu-btn"
+    class="cursor-pointer md:hidden py-2 px-2 text-2xl z-50"
+    aria-label="Toggle menu"
+  >
+    <svg
+      id="menu-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-menu"
+    >
+      <line x1="4" x2="20" y1="12" y2="12"></line><line
+        x1="4"
+        x2="20"
+        y1="6"
+        y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>
+    </svg>
+    <svg
+      id="close-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-x hidden"
+    >
+      <path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>
+    </svg>
+  </button>
+
+  <nav
+    id="mobile-nav"
+    class="fixed top-16 left-0 right-0 font-light bg-[#363636] p-6 md:hidden rounded-b-xl transition-all duration-300 ease-in-out transform -translate-y-full opacity-0 pointer-events-none"
+  >
+    <ul class="flex flex-col gap-6 text-2xl">
+      <li>
+        <a
+          class:list={[
+            { "text-white": isActive("/") },
+            { "text-[#a0a0a0]": !isActive("/") },
+          ]}
+          href="/"
+          id="mobile-link-home">Home</a
+        >
+      </li>
+      <li>
+        <a
+          class:list={[
+            { "text-white": isActive("/about") },
+            { "text-[#a0a0a0]": !isActive("/about") },
+          ]}
+          href="/about"
+          id="mobile-link-about">About</a
+        >
+      </li>
+      <li>
+        <a
+          class:list={[
+            { "text-white": isActive("/project") },
+            { "text-[#a0a0a0]": !isActive("/project") },
+          ]}
+          href="/project"
+          id="mobile-link-project">Project</a
+        >
+      </li>
+      <li>
+        <a
+          class:list={[
+            { "text-white": isActive("/contact") },
+            { "text-[#a0a0a0]": !isActive("/contact") },
+          ]}
+          href="/contact"
+          id="mobile-link-contact">Contact</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById("navbar-header") as HTMLElement | null;
+  const mobileMenuBtn = document.getElementById(
+    "mobile-menu-btn"
+  ) as HTMLButtonElement | null;
+  const mobileNav = document.getElementById("mobile-nav") as HTMLElement | null;
+  const menuIcon = document.getElementById("menu-icon") as SVGSVGElement | null;
+  const closeIcon = document.getElementById(
+    "close-icon"
+  ) as SVGSVGElement | null;
+
+  let menuOpen = false;
+
+  // Fungsi untuk membuka/menutup menu
+  const toggleMenu = () => {
+    menuOpen = !menuOpen;
+    if (!mobileNav || !menuIcon || !closeIcon) return;
+    if (menuOpen) {
+      mobileNav.classList.remove(
+        "-translate-y-full",
+        "opacity-0",
+        "pointer-events-none"
+      );
+      mobileNav.classList.add("translate-y-0", "opacity-100");
+      menuIcon.classList.add("hidden");
+      closeIcon.classList.remove("hidden");
+    } else {
+      mobileNav.classList.remove("translate-y-0", "opacity-100");
+      mobileNav.classList.add(
+        "-translate-y-full",
+        "opacity-0",
+        "pointer-events-none"
+      );
+      menuIcon.classList.remove("hidden");
+      closeIcon.classList.add("hidden");
+    }
+  };
+
+  // Event listener untuk tombol menu
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", toggleMenu);
+  }
+
+  // Event listener untuk scroll
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    if (!header) return;
+    // Mengubah warna background dan menambahkan bayangan saat di-scroll
+    if (scrollY > 20) {
+      header.classList.add("backdrop-blur-lg", "bg-[#1C1B1C]/50", "shadow-lg");
+    } else {
+      header.classList.remove(
+        "backdrop-blur-lg",
+        "bg-[#1C1B1C]/50",
+        "shadow-lg"
+      );
+    }
+    // Menyembunyikan/menampilkan header saat di-scroll lebih jauh
+    if (scrollY > 200) {
+      header.classList.add("opacity-0", "pointer-events-none");
+    } else {
+      header.classList.remove("opacity-0", "pointer-events-none");
+    }
+    // Tutup menu jika pengguna scroll
+    if (menuOpen && scrollY > 0) {
+      toggleMenu();
+    }
+  });
+
+  // Event listener untuk menutup menu saat tautan di dalamnya diklik
+  if (mobileNav) {
+    mobileNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (menuOpen) {
+          toggleMenu();
+        }
+      });
+    });
+  }
+</script>

@@ -1,8 +1,13 @@
 ---
+import Navbar from "../components/Navbar.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import { Navbar } from "../components/Navbar";
+import Footer from "../components/Footer.astro";
 ---
 
 <MainLayout title="About" , description="This is about page">
-  <Navbar client:load />
+  <Navbar />
+  <div class="relative items-center min-h-screen text-white flex flex-col">
+    <h1 class="flex text-center text-2xl font-bold">This is About</h1>
+  </div>
+  <Footer />
 </MainLayout>
