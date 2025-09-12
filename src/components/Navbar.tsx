@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X} from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export const Navbar = () => {
     // State Variable
@@ -8,7 +8,7 @@ export const Navbar = () => {
     const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
-        if(!menuOpen) return;
+        if (!menuOpen) return;
         const handleScroll = () => {
             const y = window.scrollY;
             setScrolled(y > 20);
@@ -16,8 +16,9 @@ export const Navbar = () => {
             if (menuOpen && y > 0) setMenuOpen(false);
         };
         window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll", handleScroll)}, [menuOpen])
-    ;
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [menuOpen])
+        ;
 
     const isActive = (path: string) => {
         if (typeof window !== "undefined") {
@@ -38,13 +39,13 @@ export const Navbar = () => {
     // Start Navbar
     return (
         <header className={navbarClass}>
-            <div className="flex cursor-pointer text-2xl align-items-center text-[#a0a0a0] font-semibold">
+            {/* <div className="flex cursor-pointer text-2xl align-items-center text-[#a0a0a0] font-semibold">
                 <a href="/">
                     <span className="font-semibold text-white px-3 py-3">Kaiden.
                         <span className="text-[#a0a0a0]">dev</span>
                     </span>
                 </a>
-            </div>
+            </div> */}
 
             {/* Desktop Items */}
             <nav className="hidden font-light md:flex gap-6 items-center text-m">
@@ -91,13 +92,13 @@ export const Navbar = () => {
                     </li>
                 </ul>
             </nav>
-            
+
             {/* Button */}
             <button
                 className="cursor-pointer md:hidden py-2 px-2 text-2xl"
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label="Toggle menu">
-                {menuOpen ? <X color="#ffffff"/> : <Menu color="#ffffff" />}
+                {menuOpen ? <X color="#ffffff" /> : <Menu color="#ffffff" />}
             </button>
 
             {/* Mobile Items */}

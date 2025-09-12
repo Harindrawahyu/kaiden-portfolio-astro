@@ -6,6 +6,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         publicSans: ['"Public Sans"', "sans-serif"],
+        
       },
     },
   },

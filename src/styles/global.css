@@ -19,6 +19,9 @@ body {
 
 }
 
+#typed {
+  font-family: Inter, "Noto Sans", "Noto Sans JP", "Noto Sans Arabic", "Noto Sans KR", sans-serif;
+}
 
 @media (max-width: 768px){
   .container {
