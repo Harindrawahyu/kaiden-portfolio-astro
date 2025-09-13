@@ -2,12 +2,91 @@
 import Navbar from "../components/Navbar.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import myImage from "../assets/Harindra.jpeg";
 ---
 
 <MainLayout title="About" , description="This is about page">
   <Navbar />
-  <div class="relative items-center min-h-screen text-white flex flex-col">
-    <h1 class="flex text-center text-2xl font-bold">This is About</h1>
-  </div>
+  <!-- <main class="flex items-center justify-center min-h-screen text-center pt-16">
+    <h1 class="text-white text-5xl font-bold">This is About</h1>
+  </main> -->
+
+  <main class="container mx-auto p-8 max-w-4xl">
+    <div
+      class="flex flex-col items-center justify-center text-center space-y-8"
+    >
+      <div class="flex flex-col items-center space-y-4 mt-15">
+        <!-- img -->
+        <Image
+          src={myImage}
+          alt="Your Profile"
+          class="w-32 h-32 rounded-full object-cover shadow-lg"
+        />
+
+        <!-- name -->
+        <h1 class="text-4xl font-bold text-white mt-3">
+          Harindra Wahyu Arifudin
+        </h1>
+        <p class="text-center text-lg text-[#a0a0a0]">
+          Full Stack Web Developer
+        </p>
+      </div>
+
+      <section class="max-w-prose">
+        <p class="text-lg text-gray-300 leading-relaxed">
+          Hello! I'm Indra, a passionate UI Designer and Front-End Web Developer
+          based in Indonesia. I love bringing beautiful designs to life with
+          clean and efficient code. My journey in the tech world started with a
+          curiosity for how things work, which quickly turned into a love for
+          building user-friendly and visually appealing web experiences.
+        </p>
+        <p class="text-lg text-gray-300 leading-relaxed mt-4">
+          When I'm not coding or designing, I enjoy exploring new technologies,
+          playing video games, and spending time in nature. I believe the best
+          products are a blend of great design and solid engineering, and I'm
+          always eager to learn and grow in both fields.
+        </p>
+      </section>
+
+      <section class="w-full">
+        <h2 class="text-3xl font-bold mb-6">My Skills</h2>
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center"
+        >
+          <div
+            class="bg-[#3a3a3a] p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          >
+            <p class="text-xl font-semibold">UI/UX Design</p>
+          </div>
+          <div
+            class="bg-[#3a3a3a] p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          >
+            <p class="text-xl font-semibold">HTML & CSS</p>
+          </div>
+          <div
+            class="bg-[#3a3a3a] p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          >
+            <p class="text-xl font-semibold">JavaScript</p>
+          </div>
+          <div
+            class="bg-[#3a3a3a] p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          >
+            <p class="text-xl font-semibold">React/Astro</p>
+          </div>
+          <div
+            class="bg-[#3a3a3a] p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          >
+            <p class="text-xl font-semibold">Tailwind CSS</p>
+          </div>
+          <div
+            class="bg-[#3a3a3a] p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          >
+            <p class="text-xl font-semibold">Git/GitHub</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
   <Footer />
 </MainLayout>
